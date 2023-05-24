@@ -25,7 +25,7 @@ class _ResultTestState extends State<ResultTest> {
             leading: IconButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const HomeScreen()));
+                      builder: (context) => const MyHomePage()));
                 },
                 icon: const Icon(Icons.home)),
             title: const Text(

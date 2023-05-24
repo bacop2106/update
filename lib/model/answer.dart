@@ -1,9 +1,18 @@
 import 'dart:convert';
 
+import 'package:hive/hive.dart';
+
+part 'answer.g.dart';
+
+@HiveType(typeId: 0)
 class Answer {
+  @HiveField(0)
   int? id;
+  @HiveField(1)
   String? content;
+  @HiveField(2)
   int? correct;
+  @HiveField(3)
   int? questionId;
 
   Answer({

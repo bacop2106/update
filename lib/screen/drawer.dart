@@ -20,6 +20,7 @@ class _DrawerSelectState extends State<DrawerSelect> {
     HttpService.fetchPosts().then((dataFromServer) {
       setState(() {
         postData = dataFromServer;
+        print(postData);
       });
     });
   }
@@ -94,7 +95,7 @@ class _DrawerSelectState extends State<DrawerSelect> {
                                     Container(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          '${postData[index].name}',
+                                          postData[index].name,
                                           style: const TextStyle(
                                             fontSize: 18,
                                             color: Colors.white,

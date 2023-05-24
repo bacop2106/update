@@ -1,11 +1,18 @@
 import 'dart:convert';
 
-import 'answer.dart';
-import 'category.dart';
+import 'package:hive/hive.dart';
 
+import 'answer.dart';
+
+part 'question.g.dart';
+
+@HiveType(typeId: 2)
 class Question {
+  @HiveField(0)
   int? id;
+  @HiveField(1)
   String? content;
+  @HiveField(2)
   List<Answer> answers;
   Question({
     required this.id,

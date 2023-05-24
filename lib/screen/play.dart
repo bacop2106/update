@@ -3,13 +3,16 @@ import 'package:untitled2/screen/result.dart';
 
 import '../model/answer.dart';
 import '../model/question.dart';
+import '../model/quiz.dart';
 
 class PlayScreenPage extends StatefulWidget {
-  List<Question> listQues;
+  Quiz quiz;
+  List<Question> listQuestions;
   // Post post;
   PlayScreenPage({
     Key? key,
-    required this.listQues,
+    required this.listQuestions,
+    required this.quiz,
   }) : super(key: key);
 
   @override
@@ -24,7 +27,7 @@ class _PlayScreenPageState extends State<PlayScreenPage> {
   void initState() {
     super.initState();
     isClick = List.generate(
-        widget.listQues.elementAt(i).answers.length, (index) => false);
+        widget.listQuestions.elementAt(i).answers.length, (index) => false);
   }
   // @override
   // void initState() {
@@ -36,7 +39,7 @@ class _PlayScreenPageState extends State<PlayScreenPage> {
 
   @override
   Widget build(BuildContext context) {
-    Question question = widget.listQues.elementAt(i);
+    Question question = widget.listQuestions.elementAt(i);
     return SafeArea(
         child: Scaffold(
             backgroundColor: const Color(0xFFf1f1f1),
@@ -53,7 +56,7 @@ class _PlayScreenPageState extends State<PlayScreenPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "${i + 1}/${widget.listQues.length}",
+                      "${i + 1}/${widget.listQuestions.length}",
                       style: const TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )),
@@ -106,7 +109,7 @@ class _PlayScreenPageState extends State<PlayScreenPage> {
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        ResultTest(listQues: widget.listQues)));
+                        ResultTest(listQues: widget.listQuestions)));
           },
           child: Container(
             width: 150,
@@ -118,7 +121,7 @@ class _PlayScreenPageState extends State<PlayScreenPage> {
                 borderRadius: BorderRadius.circular(90)),
             child: Center(
               child: Text(
-                (i >= widget.listQues.length - 1) ? "Finish" : "Next",
+                (i >= widget.listQuestions.length - 1) ? "Finish" : "Next",
                 style: const TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),

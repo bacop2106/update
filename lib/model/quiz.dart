@@ -1,22 +1,41 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+import 'package:hive/hive.dart';
+part 'quiz.g.dart';
+
+@HiveType(typeId: 3)
 class Quiz {
-  int? id;
-  String? name;
-  int? parentId;
-  int? index;
+  @HiveField(0)
+  int id;
+  @HiveField(1)
+  int categoryId;
+  @HiveField(2)
+  String name;
 
-  Quiz({this.id, this.name, this.parentId, required this.index});
+  Quiz({
+    required this.id,
+    required this.categoryId,
+    required this.name,
+  });
 
-  Quiz.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    // parentId = json['category_id'];
-    index = index;
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'category_id': categoryId,
+      'name': name,
+    };
   }
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['category_id'] = parentId;
-    return data;
+
+  factory Quiz.fromMap(Map<String, dynamic> map) {
+    return Quiz(
+      id: map['id'] as int,
+      categoryId: map['category_id'] as int,
+      name: map['name'] as String,
+    );
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory Quiz.fromJson(String source) =>
+      Quiz.fromMap(json.decode(source) as Map<String, dynamic>);
 }

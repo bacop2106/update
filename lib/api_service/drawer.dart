@@ -5,11 +5,9 @@ import '../model/category.dart';
 class HttpService {
   static const String url =
       'https://quiz-prod.techlead.vn/services/quizservices/api/v1/categories?categoryName=English';
-
   static List<Category> parsePost(String responseBody) {
     var list = jsonDecode(responseBody) as List<dynamic>;
-    List<Category> posts =
-        list.map((model) => Category.fromJson(model)).toList();
+    List<Category> posts = list.map((e) => Category.fromMap(e)).toList();
     return posts;
   }
 
@@ -20,7 +18,7 @@ class HttpService {
       List l = a['categories'];
 
       List<Category> listPost =
-          List<Category>.from(l.map((e) => Category.fromJson(e)));
+          List<Category>.from(l.map((e) => Category.fromMap(e)));
       return listPost;
     } else if (response.statusCode == 404) {
       throw Exception('Not Found');
